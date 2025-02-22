@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #cart-summary {
+            list-style-type: none;
+            padding: 0;
+        }
+        #cart-summary li {
+            margin: 5px 0;
+        }
+        #payment-section {
+            margin-top: 20px;
+        }
+        #address-input {
+            margin-top: 20px;
+            padding: 10px;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>עמוד תשלום</h1>
+    <ul id="cart-summary"></ul>
+    <h2 id="total-payment"></h2>
+
+    <input type="text" id="address-input" placeholder="Enter your home address">
+
+    <div id="payment-section">
+        <button onclick="confirmPayment()">להמשך התשלום</button>
+    </div>
+
+    <script>
+        function getCartFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cartData = urlParams.get('cart');
+            return cartData ? JSON.parse(decodeURIComponent(cartData)) : {};
+        }
+
+        function displayCart() {
+            const cart = getCartFromURL();
+            const cartSummary = document.getElementById('cart-summary');
+            let totalPayment = 0;
+
+            cartSummary.innerHTML = '';
+            for (let item in cart) {
+                let li = document.createElement('li');
+                li.textContent = `${item} - $${cart[item].price} x ${cart[item].quantity}`;
+                cartSummary.appendChild(li);
+                totalPayment += cart[item].price * cart[item].quantity;
+            }
+
+            document.getElementById('total-payment').textContent = `Total Payment: $${totalPayment}`;
+        }
+
+        function confirmPayment() {
+            const address = document.getElementById('address-input').value.trim();
+            if (address === "") {
+                alert("Please enter your home address before confirming payment.");
+                return;
+            }
+            alert(`Payment confirmed! Your order will be delivered to: ${address}`);
+            window.location.href = "success.html"; // נניח שיש דף הצלחה
+        }
+
+        displayCart();
+    </script>
+</body>
+</html>

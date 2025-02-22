@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Awesome Website | Shop</title>
+        <link href="style/main.css" rel="stylesheet" type="text/css">
+        <script defer src="script/cart.js"></script>
+    </head>
+    <body>
+        <h2>Awesome - Shop Now</h2>
+        <p>This is the awesome Website's shop.</p>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li>Shop Now</li>
+        </ul>
+        
+        <div class="product">
+            <p>Potato - $2</p>
+            <button onclick="addToCart('Potato', 2)">Add to Cart</button>
+            <button onclick="removeFromCart('Potato')">Remove</button>
+        </div>
+
+        <div class="product">
+            <p>Computer - $10</p>
+            <button onclick="addToCart('Computer', 10)">Add to Cart</button>
+            <button onclick="removeFromCart('Computer')">Remove</button>
+        </div>
+
+        <div class="product">
+            <p>Phone - $5</p>
+            <button onclick="addToCart('Phone', 5)">Add to Cart</button>
+            <button onclick="removeFromCart('Phone')">Remove</button>
+        </div>
+
+        <div class="product">
+            <p>Headphones - $3</p>
+            <button onclick="addToCart('Headphones', 3)">Add to Cart</button>
+            <button onclick="removeFromCart('Headphones')">Remove</button>
+        </div>
+
+        <div class="product">
+            <p>Smartwatch - $7</p>
+            <button onclick="addToCart('Smartwatch', 7)">Add to Cart</button>
+            <button onclick="removeFromCart('Smartwatch')">Remove</button>
+        </div>
+
+        <h3>Shopping Cart</h3>
+        <ul id="cart"></ul>
+        <p><strong>Total Price: $<span id="total-payment">0</span></strong></p>
+        <button id="payment-id" onclick="checkout()">Payment Now</button>
+    </body>
+</html>
